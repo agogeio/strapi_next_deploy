@@ -5,25 +5,21 @@ import os
 import subprocess
 
 HOSTING_PATH = './create_hosting_dir.sh'
-
 INSTALL_BASE_PACKAGES = './install_base.sh'
 INSTALL_NODE_PACKAGES = './install_node.sh'
 INSTALL_NGINX = './install_nginx.sh'
-
 SET_NGINX = './set_nginx.sh'
-
 SRC_FILE = './domain.template'
-
 TEMPLATE_DOMAIN = 'domain.template'
 
-#name = input("What is the name of the user you would like to create?: ")
-#username = input("What should the username be?: ")
-#password = input("What is the unencrypted password you would like to use?: ")
+name = input("What is the name of the user you would like to create?: ")
+username = input("What should the username be?: ")
+password = input("What is the unencrypted password you would like to use?: ")
 domain = input("What is the domain name to be used?: ")
 
-name = 'Test Hub'
-username = 'testhub'
-password = 'password'
+# name = 'Test Hub'
+# username = 'testhub'
+# password = 'password'
 
 def create_user(cu_name, cu_username, cu_password) -> None:
     """ Create the user and sets the password on the target system"""
