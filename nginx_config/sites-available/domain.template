@@ -2,10 +2,10 @@
 server {
 
         index index.html index.htm index.nginx-debian.html;
-        server_name othin.io www.othin.io;
+        server_name domain.template www.domain.template;
 
         location / {
-		root /var/www/othin.io/html;
+		root /var/www/domain.template/html;
         }
 
 
@@ -46,26 +46,26 @@ server {
 
 	listen [::]:443 ssl ipv6only=on; # managed by Certbot
 	listen 443 ssl; # managed by Certbot
-	ssl_certificate /etc/letsencrypt/live/othin.io/fullchain.pem; # managed by Certbot
-	ssl_certificate_key /etc/letsencrypt/live/othin.io/privkey.pem; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/domain.template/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/domain.template/privkey.pem; # managed by Certbot
 	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
 }
 
 server {
-	if ($host = www.othin.io) {
+	if ($host = www.domain.template) {
 		return 301 https://$host$request_uri;
 	} # managed by Certbot
 
 
-	if ($host = othin.io) {
+	if ($host = domain.template) {
 		return 301 https://$host$request_uri;
 	} # managed by Certbot
 
         listen 80;
         listen [::]:80;
 
-        server_name othin.io www.othin.io;
+        server_name domain.template www.domain.template;
 	return 404; # managed by Certbot
 }

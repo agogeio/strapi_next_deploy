@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd
+cd /root
 curl https://raw.githubusercontent.com/agogeio/strapi_next_deploy/main/system_config.py -o system_config.py
 
 curl https://raw.githubusercontent.com/agogeio/strapi_next_deploy/main/create_hosting_dir.sh -o create_hosting_dir.sh
