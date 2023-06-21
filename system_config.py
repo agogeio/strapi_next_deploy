@@ -5,14 +5,21 @@ import os
 import subprocess
 
 HOSTING_PATH = './create_hosting_dir.sh'
+
 INSTALL_BASE_PACKAGES = './install_base.sh'
 INSTALL_NODE_PACKAGES = './install_node.sh'
 INSTALL_NGINX = './install_nginx.sh'
 
+SET_NGINX = './set_nginx.sh'
+
+SRC_FILE = './domain.template'
+
+TEMPLATE_DOMAIN = 'domain.template'
+
 #name = input("What is the name of the user you would like to create?: ")
 #username = input("What should the username be?: ")
 #password = input("What is the unencrypted password you would like to use?: ")
-#domain = input("What is the domain name to be used?: ")
+domain = input("What is the domain name to be used?: ")
 
 name = 'Test Hub'
 username = 'testhub'
@@ -30,16 +37,16 @@ def add_x_to_file(file_path) -> None:
          capture_output=True, text=True, universal_newlines=True, check=False)
     print(result)
 
-def execute_bash(file_path, user_name = 'None') -> None:
+def execute_bash(file_path, user_param = 'None') -> None:
     """ Bash Script to Execute """
 
-    if user_name == 'None':
+    if user_param == 'None':
         execute_result = subprocess.run(file_path, capture_output=True,
                                          text=True, universal_newlines=True, check=False)
         print(execute_result.stdout)
     else:
-        print(f"Executing with username: {user_name}")
-        execute_result = subprocess.run([file_path, user_name], capture_output=True,
+        print(f"Executing with username: {user_param}")
+        execute_result = subprocess.run([file_path, user_param], capture_output=True,
                          text=True, universal_newlines=True, check=False)
         print(execute_result.stdout)
 
@@ -54,8 +61,22 @@ add_x_to_file(HOSTING_PATH)
 add_x_to_file(INSTALL_BASE_PACKAGES)
 add_x_to_file(INSTALL_NODE_PACKAGES)
 add_x_to_file(INSTALL_NGINX)
+add_x_to_file(SET_NGINX)
 
 execute_bash(HOSTING_PATH, username)
 execute_bash(INSTALL_BASE_PACKAGES)
 execute_bash(INSTALL_NODE_PACKAGES)
 execute_bash(INSTALL_NGINX)
+
+
+with open(SRC_FILE, 'r', encoding='utf-8') as file:
+    content = file.read()
+
+# Replace the specific text
+modified_content = content.replace(TEMPLATE_DOMAIN, domain)
+
+# Open the file in write mode and write the modified contents
+with open(f'./{domain}', 'w', encoding='utf-8') as file:
+    file.write(modified_content)
+
+execute_bash(SET_NGINX, domain)
