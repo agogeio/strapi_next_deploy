@@ -29,6 +29,7 @@ def create_user(cu_name, cu_username, cu_password) -> None:
 
 def add_x_to_file(file_path) -> None:
     """ Add Executable Permissions on a File"""
+    print(f'Making file, {file_path} executable')
     result = subprocess.run(['chmod', '+x', file_path],
          capture_output=True, text=True, universal_newlines=True, check=False)
     print(result)
@@ -37,11 +38,12 @@ def execute_bash(file_path, user_param = 'None') -> None:
     """ Bash Script to Execute """
 
     if user_param == 'None':
+        print(f"Executing {file_path} parameter: {user_param}")
         execute_result = subprocess.run(file_path, capture_output=True,
                                          text=True, universal_newlines=True, check=False)
         print(execute_result.stdout)
     else:
-        print(f"Executing with username: {user_param}")
+        print(f"Executing {file_path} parameter: {user_param}")
         execute_result = subprocess.run([file_path, user_param], capture_output=True,
                          text=True, universal_newlines=True, check=False)
         print(execute_result.stdout)
