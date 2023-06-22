@@ -3,7 +3,6 @@
 # curl https://raw.githubusercontent.com/agogeio/strapi_next_deploy/main/boot.sh -o boot.sh
 # chmod +x boot.sh
 # ./boot.sh
-# python3 system_config.py
 
 cd /root
 curl https://raw.githubusercontent.com/agogeio/strapi_next_deploy/main/system_config.py -o system_config.py
@@ -18,3 +17,4 @@ curl https://raw.githubusercontent.com/agogeio/strapi_next_deploy/main/set_certb
 
 curl https://raw.githubusercontent.com/agogeio/strapi_next_deploy/main/nginx_config/sites-available/domain.template -o domain.template
 
+python3 system_config.py
