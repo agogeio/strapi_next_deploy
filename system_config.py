@@ -10,8 +10,9 @@ INSTALL_BASE_PACKAGES = './install_base.sh'
 INSTALL_NGINX = './install_nginx.sh'
 INSTALL_NODE_PACKAGES = './install_node.sh'
 
-SET_NGINX = './set_nginx.sh'
 SET_CERTBOT = './set_certbot.sh'
+SET_NGINX = './set_nginx.sh'
+SET_UFW = './set_ufw.sh'
 
 SRC_FILE = './domain.template'
 TEMPLATE_DOMAIN = 'domain.template'
@@ -61,6 +62,7 @@ add_x_to_file(INSTALL_NODE_PACKAGES)
 add_x_to_file(INSTALL_NGINX)
 add_x_to_file(SET_NGINX)
 add_x_to_file(SET_CERTBOT)
+add_x_to_file(SET_UFW)
 
 
 execute_bash(HOSTING_PATH, username)
@@ -81,3 +83,4 @@ with open(f'./{domain}', 'w', encoding='utf-8') as file:
 
 execute_bash(SET_NGINX, domain)
 execute_bash(SET_CERTBOT, domain)
+execute_bash(SET_UFW)
